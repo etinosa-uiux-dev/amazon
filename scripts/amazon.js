@@ -1,8 +1,8 @@
-import { cart as salesCart } from '../data/cart.js';
+import { cart as salesCart, addToCart } from '../data/cart.js';
 import { products } from '../data/products.js';
 
 /*
-  Modules only work with live servers. Modules are used to avoid naming conflicts. Naming conflicts will disable our page from working. "cart as salesCart" changes the "cart" name to "salesCart" in this file so another variable in this file can use the name "cart" like the variable below.
+  Modules only work with live servers. Modules are used to avoid naming conflicts. Naming conflicts will disable our page from working. "cart as salesCart" changes the "cart" name to "salesCart" in this file so when using this variable, we use the name "salesCart", and it allows another variable in this file can use the name "cart" like the variable below. So the variable below no helps our code work cause we are using the variable name "cart".
 */
 
 const cart = [];
@@ -63,6 +63,17 @@ products.forEach ( (product) => {
     `;
 });
 
+function updateQuantity () {
+  let cartQuantity = 0;
+
+  cart.forEach ( (cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  document.querySelector ('.js-cart-quantity')
+    .innerHTML = cartQuantity;
+}
+
 document.querySelector ('.js-products-grid').innerHTML = productsHTML;
 
 document.querySelectorAll ('.js-add-to-cart')
@@ -71,30 +82,9 @@ document.querySelectorAll ('.js-add-to-cart')
 
       const productId = button.dataset.productId;
 
-      let matchingItem;
+      addToCart (productId);
 
-      cart.forEach ( (item) => {
-        if (productId === item.productId) {
-          matchingItem = item;
-        }
-      });
-
-      if (matchingItem) {
-        matchingItem.quantity += 1;
-      } else {
-        cart.push ({
-          productId : productId,
-          quantity: 1
-        });
-      }
-
-      let cartQuantity = 0;
-
-      cart.forEach ( (item) => {
-        cartQuantity += item.quantity;
-      });
-
-      document.querySelector ('.js-cart-quantity')
-        .innerHTML = cartQuantity;
+      updateQuantity ();
+      
     });
   });
