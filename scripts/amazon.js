@@ -1,4 +1,5 @@
 import { cart as salesCart } from '../data/cart.js';
+import { products } from '../data/products.js';
 
 /*
   Modules only work with live servers. Modules are used to avoid naming conflicts. Naming conflicts will disable our page from working. "cart as salesCart" changes the "cart" name to "salesCart" in this file so another variable in this file can use the name "cart" like the variable below.
