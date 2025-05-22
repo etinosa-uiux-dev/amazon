@@ -1,11 +1,12 @@
-import { cart as salesCart, addToCart } from '../data/cart.js';
+import { cart, addToCart } from '../data/cart.js';
 import { products } from '../data/products.js';
 
+// import { cart as salesCart} from '../data/cart.js';
 /*
   Modules only work with live servers. Modules are used to avoid naming conflicts. Naming conflicts will disable our page from working. "cart as salesCart" changes the "cart" name to "salesCart" in this file so when using this variable, we use the name "salesCart", and it allows another variable in this file can use the name "cart" like the variable below. So the variable below no helps our code work cause we are using the variable name "cart".
 */
 
-const cart = [];
+// const cart = [];
 
 let productsHTML = '';
 
